@@ -27,7 +27,7 @@ set "ZIP_Path=C:\Temp\ZippedLogs"
 
 This file contains a list of server names or IP addresses from which logs will be collected. Each server should be listed on a new line. Lines starting with `#` are considered comments and will be ignored. Blank lines will also be skipped.
 
-```plaintext name=servers.txt
+```sh name=servers.txt
 # servers.txt - List of Servers
 # 
 # This file contains a list of servers to collect logs from.
@@ -54,7 +54,7 @@ server3.example.com
 
 This file contains the source file paths and their corresponding destination paths relative to the destination root. Each entry should be in the format `SourcePath DestinationPath`, separated by a space. Lines starting with `#` are considered comments and will be ignored. Blank lines will also be skipped.
 
-```plaintext name=filepaths.txt
+```sh name=filepaths.txt
 # filepaths.txt - List of File Paths
 # 
 # This file contains source and destination file paths for log collection.
