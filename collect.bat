@@ -32,6 +32,7 @@ for /f "tokens=1,2" %%B in (filepaths.txt) do (
     set "DestPaths[!FilePathCount!]=%%C"
     set /a FilePathCount+=1
 )
+set /a FilePathCount-=1
 
 REM ========================================================
 REM  Print a list of defined Servers
