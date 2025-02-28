@@ -7,6 +7,7 @@ REM ========================================================
 set "LogAge=1"                               
 set "DestinationRoot=C:\Temp\CollectedLogs"
 set "ZIP_7z_exe=C:\Program Files\7-Zip\7z.exe"
+set "ZIP_Path=C:\Temp\ZippedLogs"
 
 REM ========================================================
 REM  Ensure DestinationRoot exists and set compressed flag
@@ -99,11 +100,14 @@ if not exist "%ZIP_7z_Exe%" (
     goto EndScript
 )
 
+REM Ensure ZIP_Path exists
+if not exist "%ZIP_Path%" mkdir "%ZIP_Path%"
+
 REM Get today's date in YYYY-MM-DD format
 set "DateStamp=%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%"
 
 for /d %%a in ("%DestinationRoot%\*") do (
-    "%ZIP_7z_Exe%" a "%DateStamp%-%%~nxa.zip" "%%a"
+    "%ZIP_7z_Exe%" a "%ZIP_Path%\%DateStamp%-%%~nxa.zip" "%%a"
 )
 
 :EndScript
