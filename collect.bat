@@ -10,12 +10,6 @@ set "ZIP_7z_exe=C:\Program Files\7-Zip\7z.exe"
 set "ZIP_Path=C:\Temp\ZippedLogs"
 
 REM ========================================================
-REM  Ensure DestinationRoot exists and set compressed flag
-REM ========================================================
-if not exist "%DestinationRoot%" mkdir "%DestinationRoot%"
-compact /C /I /Q "%DestinationRoot%"
-
-REM ========================================================
 REM  Load Server List from servers.txt
 REM ========================================================
 set "ServerCount=0"
@@ -48,8 +42,25 @@ for /l %%i in (0,1,!UpperBound!) do (
 )
 echo.
 
+REM ========================================================
+REM  Print a list of defined File Paths
+REM ========================================================
+echo ========================================================
+echo  File Paths:
+echo ========================================================
+for /l %%j in (0,1,!FilePathCount!) do (
+    echo !SourcePaths[%%j]! --^> !DestPaths[%%j]!
+)
+echo.
+
 choice /M "Are you ready to COPY the logs? (Y/N)"
 if %ERRORLEVEL% == 2 goto EndScript
+
+REM ========================================================
+REM  Ensure DestinationRoot exists and set compressed flag
+REM ========================================================
+if not exist "%DestinationRoot%" mkdir "%DestinationRoot%"
+compact /C /I /Q "%DestinationRoot%"
 
 REM ========================================================
 REM   Main Loop
