@@ -1,0 +1,16 @@
+# filepaths.txt - List of File Paths
+# 
+# This file contains source and destination file paths for log collection.
+# Each line should specify a source path and a destination path, separated by a space.
+# Lines starting with '#' are considered comments and will be ignored.
+# Blank lines will also be skipped.
+# 
+# Example:
+# 
+# source\path\to\logs relative\destination\path
+# source\path\to\more\logs another\relative\destination\path
+# 
+# Note: Ensure there are no leading or trailing spaces on each line.
+# All destination paths will be relative to the destination path specified in the collect.bat.
+
+# Add your file path entries below

@@ -1,0 +1,16 @@
+# servers.txt - List of Servers
+# 
+# This file contains a list of servers to collect logs from.
+# Each server should be specified on a new line.
+# Lines starting with '#' are considered comments and will be ignored.
+# Blank lines will also be skipped.
+# 
+# Example:
+# 
+# server1.example.com
+# server2.example.com
+# server3.example.com
+# 
+# Note: Ensure there are no leading or trailing spaces on each line.
+
+# Add your server entries below
