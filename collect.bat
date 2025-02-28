@@ -8,11 +8,24 @@ REM  Date: 2025-02-28
 REM ========================================================
 
 REM ========================================================
+REM  Validate Required Files
+REM ========================================================
+if not exist "servers.txt" (
+    echo Error: servers.txt not found.
+    goto EndScript
+)
+
+if not exist "filepaths.txt" (
+    echo Error: filepaths.txt not found.
+    goto EndScript
+)
+
+REM ========================================================
 REM  Path Configuration
 REM ========================================================
 set "LogAge=1"                               
 set "DestinationRoot=C:\Temp\CollectedLogs"
-set "ZIP_7z_exe=C:\Program Files\7-Zip\7z.exe"
+set "ZIP_7z_exe=%ProgramFiles%\7-Zip\7z.exe"
 set "ZIP_Path=C:\Temp\ZippedLogs"
 
 REM ========================================================
@@ -132,6 +145,7 @@ REM Get today's date and time in YYYY-MM-DD_HH-MM format
 set "DateStamp=%DATE:~10,4%-%DATE:~4,2%-%DATE:~7,2%_%TIME:~0,2%-%TIME:~3,2%"
 set "DateStamp=%DateStamp: =0%"
 
+REM Build all the archive files
 for /d %%a in ("%DestinationRoot%\*") do (
     "%ZIP_7z_Exe%" a "%ZIP_Path%\%DateStamp%-%%~nxa.zip" "%%a"
 )
