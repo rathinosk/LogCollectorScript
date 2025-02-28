@@ -33,10 +33,12 @@ C:\Logs\app3\log.txt app3\log.txt
 2. Update the `filepaths.txt` file with the paths of the log files to be collected.
 3. Run the `collect.bat` script.
 
-The script will:
-- Load the list of servers from `servers.txt`.
-- Load the file paths from `filepaths.txt`.
-- Copy the specified log files from each server to the local destination.
-- Optionally, zip the collected logs using 7-Zip.
+The script does the following:  
+- Configures paths and log age.  
+- Load the list of servers from `servers.txt`.  
+- Load the file paths from `filepaths.txt`.  
+- Displays the list of servers and file paths.  
+- Copies log files from the servers to a local destination using robocopy.  
+- Optionally, zips the collected logs using 7-Zip.  
 
-Ensure that the paths and configurations in the `collect.bat` script are correctly set before running the script.
+Ensure that the paths and configurations in the `collect.bat` script are correctly set before running the script.  
