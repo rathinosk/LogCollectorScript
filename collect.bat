@@ -133,7 +133,7 @@ REM ========================================================
 choice /M "Are you ready to ZIP the logs? (Y/N)"
 if %ERRORLEVEL% == 2 goto EndScript
 
-if not exist "%ZIP_7z_Exe%" (
+if not exist "%ZIP_7z_exe%" (
     echo 7z.exe not found. Please install 7-Zip or check the path.
     goto EndScript
 )
@@ -147,7 +147,7 @@ set "DateStamp=%DateStamp: =0%"
 
 REM Build all the archive files
 for /d %%a in ("%DestinationRoot%\*") do (
-    "%ZIP_7z_Exe%" a "%ZIP_Path%\%DateStamp%-%%~nxa.zip" "%%a"
+    "%ZIP_7z_exe%" a "%ZIP_Path%\%DateStamp%-%%~nxa.zip" "%%a"
 )
 
 :EndScript
