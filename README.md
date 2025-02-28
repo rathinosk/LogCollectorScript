@@ -9,9 +9,26 @@ This repository contains a batch script (`collect.bat`) to collect and zip log f
 This file contains a list of server names or IP addresses from which logs will be collected. Each server should be listed on a new line. Lines starting with `#` are considered comments and will be ignored. Blank lines will also be skipped.
 
 ```plaintext name=servers.txt
-server1
-server2
-server3
+# servers.txt - List of Servers
+# 
+# This file contains a list of servers to collect logs from.
+# Each server should be specified on a new line.
+# Lines starting with '#' are considered comments and will be ignored.
+# Blank lines will also be skipped.
+# 
+# Example:
+# 
+# server1.example.com
+# server2.example.com
+# server3.example.com
+# 
+# Note: Ensure there are no leading or trailing spaces on each line.
+
+# Add your server entries below
+
+server1.example.com
+# server2.example.com
+server3.example.com
 ```
 
 ### filepaths.txt
@@ -19,9 +36,26 @@ server3
 This file contains the source file paths and their corresponding destination paths relative to the destination root. Each entry should be in the format `SourcePath DestinationPath`, separated by a space. Lines starting with `#` are considered comments and will be ignored. Blank lines will also be skipped.
 
 ```plaintext name=filepaths.txt
-C:\Logs\app1\log.txt app1\log.txt
+# filepaths.txt - List of File Paths
+# 
+# This file contains source and destination file paths for log collection.
+# Each line should specify a source path and a destination path, separated by a space.
+# Lines starting with '#' are considered comments and will be ignored.
+# Blank lines will also be skipped.
+# 
+# Example:
+# 
+# source\path\to\logs relative\destination\path
+# source\path\to\more\logs another\relative\destination\path
+# 
+# Note: Ensure there are no leading or trailing spaces on each line.
+# All destination paths will be relative to the destination path specified in the collect.bat.
+
+# Add your file path entries below
+
+C:\Logs\app1\logs app1
 C:\Logs\app2\log.txt app2\log.txt
-C:\Logs\app3\log.txt app3\log.txt
+C:\Logs\app3\logs app3
 ```
 
 - `SourcePath`: The path of the log file on the server.
