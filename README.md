@@ -4,6 +4,25 @@ This repository contains a batch script (`collect.bat`) to collect and zip log f
 
 ## Configuration Files
 
+### collect.bat
+
+The `collect.bat` script contains several configurable variables that need to be set according to your environment:
+
+```batch
+REM ========================================================
+REM  Path Configuration
+REM ========================================================
+set "LogAge=1"                               
+set "DestinationRoot=C:\Temp\CollectedLogs"
+set "ZIP_7z_exe=C:\Program Files\7-Zip\7z.exe"
+set "ZIP_Path=C:\Temp\ZippedLogs"
+```
+
+- `LogAge`: Specifies the maximum age (in days) of the log files to be collected. Only log files modified within the last `LogAge` days will be collected.
+- `DestinationRoot`: The root directory where the collected log files will be stored. This directory will be created if it does not exist.
+- `ZIP_7z_exe`: The path to the `7z.exe` executable for 7-Zip. Ensure this path is correct if you have 7-Zip installed in a different location.
+- `ZIP_Path`: The directory where the zipped log files will be stored. This directory will be created if it does not exist.
+
 ### servers.txt
 
 This file contains a list of server names or IP addresses from which logs will be collected. Each server should be listed on a new line. Lines starting with `#` are considered comments and will be ignored. Blank lines will also be skipped.
@@ -55,7 +74,7 @@ This file contains the source file paths and their corresponding destination pat
 
 C:\Logs\app1\logs app1
 C:\Logs\app2\log.txt app2\log.txt
-C:\Logs\app3\logs app3
+# C:\Logs\app3\logs app3
 ```
 
 - `SourcePath`: The path of the log file on the server.
@@ -63,9 +82,10 @@ C:\Logs\app3\logs app3
 
 ## Usage
 
-1. Update the `servers.txt` file with the list of servers.
-2. Update the `filepaths.txt` file with the paths of the log files to be collected.
-3. Run the `collect.bat` script.
+1. Update the path variables at the top of the `collect.bat` file as needed.
+2. Update the `servers.txt` file with the list of servers.
+3. Update the `filepaths.txt` file with the paths of the log files to be collected.
+4. Run the `collect.bat` script.
 
 The script does the following:  
 - Configures paths and log age.  
