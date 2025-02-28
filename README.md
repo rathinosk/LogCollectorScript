@@ -6,7 +6,7 @@ This repository contains a batch script (`collect.bat`) to collect and zip log f
 
 ### collect.bat
 
-The `collect.bat` script contains several configurable variables that need to be set according to your environment:
+The `collect.bat` script contains configurable variables that may need to be changed depending on your environment:
 
 ```batch
 REM ========================================================
