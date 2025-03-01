@@ -93,6 +93,14 @@ REM ========================================================
 REM   Main Loop
 REM ========================================================
 
+REM Define RoboCopy error messages in an array
+set "ErrorMessage[1]=One or more files were copied successfully. "
+set "ErrorMessage[2]=Extra files or directories were detected, none of files were copied. "
+set "ErrorMessage[4]=Mismatched files or directories were detected. "
+set "ErrorMessage[8]=Some files or directories could not be copied. "
+set "ErrorMessage[16]=Serious error occurred. Robocopy did not copy any files. "
+
+
 echo ========================================================
 echo  Starting processing of %ServerCount% servers. ([0]-[%UpperBound%])
 echo ========================================================
@@ -120,9 +128,35 @@ for /l %%i in (0,1,!UpperBound!) do (
         
         robocopy "!SourcePath!" "!DestinationPath!" /S /E /COPY:DAT /DCOPY:T /MAXAGE:!LogAge! /R:0 /W:0 /NFL /NDL /NP /LOG+:"!DestinationServerPath!\robocopy.log"
     
-        if %Errorlevel% gtr 0 (
-            echo Error during copy from !Server!. Check robocopy.log for details.
-        )
+        REM Calculate the robocopy exit code
+        set "RoboCopyExitCode=!ERRORLEVEL!"
+        set "RoboCopyMessage="
+
+		set "RoboCopyMessage="
+
+		REM Decode the exit code and build combined message
+		if !RoboCopyExitCode! EQU 0 (
+			set "RoboCopyMessage=No errors occurred, and no copying was done."
+		) else (
+			for %%e in (1 2 4 8 16) do (
+				set /a "BitwiseResult=!RoboCopyExitCode! & %%e"
+				if !BitwiseResult! NEQ 0 (
+					set "RoboCopyMessage=!RoboCopyMessage!!ErrorMessage[%%e]!"
+				)
+			)
+		)
+		
+		if !RoboCopyExitCode! LEQ 7 (
+			echo SUCCESS: !RoboCopyMessage!
+		) else if !RoboCopyExitCode! LEQ 15 (
+			echo ERROR: !RoboCopyMessage!
+		) else (
+			echo FATAL: !RoboCopyMessage!
+		)
+		
+		if !RoboCopyExitCode! GEQ 8 (
+			echo Check robocopy.log for details.
+		)
     )
 )
 
